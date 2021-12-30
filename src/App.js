@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
-import { BrowserRouter as Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MarketPlace from './pages/MarketPlace'
 import Profile from './pages/Profile'
 import Home from './pages/Home'
