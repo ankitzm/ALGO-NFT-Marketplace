@@ -1,6 +1,11 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link } from 'react-router-dom'
+import { BrowserRouter as Route, Routes } from "react-router-dom";
+import MarketPlace from './pages/MarketPlace'
+import Profile from './pages/Profile'
+import Home from './pages/Home'
 
 const user = {
 	name: 'Tom Cook',
@@ -9,11 +14,9 @@ const user = {
 		'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-	{ name: 'MarketPlace', href: '#', current: true },
-	{ name: 'Team', href: 'Team', current: false },
-	{ name: 'Projects', href: 'project', current: false },
-	{ name: 'Calendar', href: '#', current: false },
-	{ name: 'Reports', href: '#', current: false },
+	{ name: 'Home', href: '', current: false },
+	{ name: 'MarketPlace', href: 'marketplace', current: false },
+	{ name: 'Profile', href: 'profile', current: false },
 ]
 const userNavigation = [
 	{ name: 'Your Profile', href: '#' },
@@ -53,7 +56,8 @@ function App() {
 										<div className="hidden md:block">
 											<div className="ml-10 flex items-baseline space-x-4">
 												{navigation.map((item) => (
-													<a
+													<Link
+														to={item.href}
 														key={item.name}
 														href={item.href}
 														className={classNames(
@@ -65,7 +69,7 @@ function App() {
 														aria-current={item.current ? 'page' : undefined}
 													>
 														{item.name}
-													</a>
+													</Link>
 												))}
 											</div>
 										</div>
@@ -119,7 +123,9 @@ function App() {
 										</div>
 									</div>
 									<div className="-mr-2 flex md:hidden">
+
 										{/* Mobile menu button */}
+
 										<Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
 											<span className="sr-only">Open main menu</span>
 											{open ? (
@@ -135,18 +141,21 @@ function App() {
 							<Disclosure.Panel className="md:hidden">
 								<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
 									{navigation.map((item) => (
-										<Disclosure.Button
-											key={item.name}
-											as="a"
-											href={item.href}
-											className={classNames(
-												item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-												'block px-3 py-2 rounded-md text-base font-medium'
-											)}
-											aria-current={item.current ? 'page' : undefined}
-										>
-											{item.name}
-										</Disclosure.Button>
+										<Link
+											to={item.href}
+											key={item.name}>
+											<Disclosure.Button
+												key={item.name}
+												as="li"
+												className={classNames(
+													item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+													'block px-3 py-2 rounded-md text-base font-medium'
+												)}
+												aria-current={item.current ? 'page' : undefined}
+											>
+												{item.name}
+											</Disclosure.Button>
+										</Link>
 									))}
 								</div>
 								<div className="pt-4 pb-3 border-t border-gray-700">
@@ -186,13 +195,18 @@ function App() {
 
 				<header className="bg-white shadow">
 					<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-						<h1 className="text-3xl font-bold text-gray-900">MarketPlace</h1>
+						<h1 className="text-3xl font-bold text-gray-900">mi</h1>
 					</div>
 				</header>
 				<main>
 					<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 						{/* Replace with your content */}
 						this is the content
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/marketplace" element={<MarketPlace />} />
+							<Route path="/profile" element={<Profile />} />
+						</Routes>
 						<div className="px-4 py-6 sm:px-0">
 							<div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
 						</div>
